@@ -1,0 +1,39 @@
+﻿<UserControl x:Class="IndiaSkills.Views.PlanLayout"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:IndiaSkills.Views"
+             mc:Ignorable="d"
+             d:DesignHeight="244.737" d:DesignWidth="448.872">
+    <Grid>
+        <ListBox x:Name="PlansList" HorizontalAlignment="Left" Height="196" Margin="8,10,0,0" VerticalAlignment="Top" Width="155" SelectionChanged="PlansList_SelectionChanged"/>
+        <Button x:Name="btn_create_plan" Content="Add Plan" HorizontalAlignment="Left" Margin="88,211,0,0" VerticalAlignment="Top" Width="75" Click="btn_create_plan_Click"/>
+        <Button x:Name="btn_save_plan" Content="Save Plan" HorizontalAlignment="Left" Margin="8,211,0,0" VerticalAlignment="Top" Width="75" Click="btn_save_plan_Click"/>
+        <Grid x:Name="panel_details" Visibility="Hidden">
+            <ListBox x:Name="listBox_seats" VerticalAlignment="Top" Margin="184,76,10,10" SelectionChanged="listBox_seats_SelectionChanged">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Rectangle x:Name="Seat" Width="25" Height="25" Stroke="Black" Fill="Green" Margin="1,1"/>
+                            <TextBlock Text="{Binding Item1}" TextAlignment="Center" VerticalAlignment="Center"
+                           Foreground="White" FontWeight="Bold"/>
+                        </Grid>
+                        <DataTemplate.Triggers>
+                            <DataTrigger Binding="{Binding Item2}" Value="False">
+                                <Setter TargetName="Seat" Property="Fill" Value="Red"/>
+                            </DataTrigger>
+                        </DataTemplate.Triggers>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+                <ListBox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel Height="160" Width="300" />
+                    </ItemsPanelTemplate>
+                </ListBox.ItemsPanel>
+            </ListBox>
+            <Label Content="Plan Name:" HorizontalAlignment="Left" Margin="184,10,0,0" VerticalAlignment="Top"/>
+            <TextBox x:Name="txt_planName" HorizontalAlignment="Left" Height="23" Margin="268,11,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextChanged="txt_planName_TextChanged"/>
+        </Grid>
+    </Grid>
+</UserControl>
